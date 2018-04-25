@@ -4,6 +4,10 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,6 +15,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 // Create a new class, Mountain, that can hold your JSON data
@@ -25,16 +32,38 @@ import java.net.URL;
 
 
 public class MainActivity extends AppCompatActivity {
+    private String[] array = {"Hej"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+        if (id == R.id.action_settings){
+            return true;
+        }
+        else if (id == R.id.action_refresh){
+            Log.d("Anders", "Nu kör vi");
+            new FetchData().execute();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private class FetchData extends AsyncTask<Void,Void,String>{
         @Override
         protected String doInBackground(Void... params) {
+            Log.d("Evert", "Background");
             // These two variables need to be declared outside the try/catch
             // so that they can be closed in the finally block.
             HttpURLConnection urlConnection = null;
@@ -45,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 // Construct the URL for the Internet service
-                URL url = new URL("_ENTER_THE_URL_TO_THE_PHP_SERVICE_SERVING_JSON_HERE_");
+                URL url = new URL("http://wwwlab.iit.his.se/brom/kurser/mobilprog/dbservice/admin/getdataasjson.php?type=brom");
 
                 // Create the request to the PHP-service, and open the connection
                 urlConnection = (HttpURLConnection) url.openConnection();
@@ -74,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
                     return null;
                 }
                 jsonStr = buffer.toString();
+                Log.d("Nisse", jsonStr);
                 return jsonStr;
             } catch (IOException e) {
                 Log.e("PlaceholderFragment", "Error ", e);
@@ -101,7 +131,16 @@ public class MainActivity extends AppCompatActivity {
 
             // Implement a parsing code that loops through the entire JSON and creates objects
             // of our newly created Mountain class.
+            Log.d("Olle", "Hej");
+            Log.d("John", o);
+            Arrays.fill(array,o);
+
+
+            setContentView(R.layout.activity_main);
+            List<String> listData = new ArrayList<String>(Arrays.asList(array));
+            ArrayAdapter adapter = new ArrayAdapter(getApplicationContext(),R.layout.list_item_textview,R.id.my_item_textview,listData);
+            ListView myListView = (ListView)findViewById(R.id.my_listview);
+            myListView.setAdapter(adapter);
         }
     }
 }
-
