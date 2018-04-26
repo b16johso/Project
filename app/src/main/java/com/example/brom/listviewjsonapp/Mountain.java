@@ -5,5 +5,18 @@ package com.example.brom.listviewjsonapp;
  */
 
 public class Mountain {
+    private String name;
+    private String location;
+    private int height;
 
+    public Mountain(String _name, String _location, int _height){
+        name = _name;
+        location = _location;
+        height = _height;
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

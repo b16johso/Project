@@ -37,10 +37,17 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private String[] array = {"Hej"};
+    List<Mountain> mountainData = new ArrayList<Mountain>();
+    private ArrayAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_main);
+        adapter = new ArrayAdapter(getApplicationContext(),R.layout.list_item_textview,R.id.my_item_textview,mountainData);
+        ListView myListView = (ListView)findViewById(R.id.my_listview);
+        myListView.setAdapter(adapter);
     }
 
     @Override
@@ -148,8 +155,11 @@ public class MainActivity extends AppCompatActivity {
                     int id = mountain.getInt("ID");
                     String name = mountain.getString("name");
                     String location = mountain.getString("location");
-                    String height = mountain.getString("size");
+                    int height = mountain.getInt("size");
                     Log.d("I can't drive", name+" "+location+" "+height);
+
+                    Mountain m = new Mountain(name, location, height);
+                    adapter.add(m);
                 }
             }
 
@@ -157,11 +167,7 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            /*setContentView(R.layout.activity_main);
-            List<String> listData = new ArrayList<String>(Arrays.asList(array));
-            ArrayAdapter adapter = new ArrayAdapter(getApplicationContext(),R.layout.list_item_textview,R.id.my_item_textview,listData);
-            ListView myListView = (ListView)findViewById(R.id.my_listview);
-            myListView.setAdapter(adapter);*/
+
         }
     }
 }
