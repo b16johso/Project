@@ -6,8 +6,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,10 +47,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        new FetchData().execute();
+
         setContentView(R.layout.activity_main);
         adapter = new ArrayAdapter(getApplicationContext(),R.layout.list_item_textview,R.id.my_item_textview,mountainData);
         ListView myListView = (ListView)findViewById(R.id.my_listview);
         myListView.setAdapter(adapter);
+
+        myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            public void onItemClick(AdapterView<?> arg0, View v, int arg2, long arg3) {
+                //here v is your ListItem's layout.
+                Toast.makeText(getApplicationContext(), mountainData.get(arg2).infoText(), Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     @Override
@@ -64,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else if (id == R.id.action_refresh){
             Log.d("Anders", "Nu kör vi");
+            adapter.clear();
             new FetchData().execute();
             return true;
         }

@@ -15,6 +15,10 @@ public class Mountain {
         height = _height;
     }
 
+    public String infoText() {
+        return name+" - "+location+" - "+height+"m";
+    }
+
     @Override
     public String toString() {
         return name;
