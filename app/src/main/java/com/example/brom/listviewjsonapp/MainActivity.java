@@ -9,6 +9,10 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -133,14 +137,31 @@ public class MainActivity extends AppCompatActivity {
             // of our newly created Mountain class.
             Log.d("Olle", "Hej");
             Log.d("John", o);
-            Arrays.fill(array,o);
 
+            try {
+                JSONArray mountains = new JSONArray(o);
 
-            setContentView(R.layout.activity_main);
+                Log.d("Rock n roll McDonalds", mountains.toString());
+
+                for (int i = 0; i < mountains.length(); i++){
+                    JSONObject mountain = mountains.getJSONObject(i);
+                    int id = mountain.getInt("ID");
+                    String name = mountain.getString("name");
+                    String location = mountain.getString("location");
+                    String height = mountain.getString("size");
+                    Log.d("I can't drive", name+" "+location+" "+height);
+                }
+            }
+
+            catch (JSONException e){
+                e.printStackTrace();
+            }
+
+            /*setContentView(R.layout.activity_main);
             List<String> listData = new ArrayList<String>(Arrays.asList(array));
             ArrayAdapter adapter = new ArrayAdapter(getApplicationContext(),R.layout.list_item_textview,R.id.my_item_textview,listData);
             ListView myListView = (ListView)findViewById(R.id.my_listview);
-            myListView.setAdapter(adapter);
+            myListView.setAdapter(adapter);*/
         }
     }
 }
