@@ -81,6 +81,9 @@ public class MainActivity extends AppCompatActivity {
             new FetchData().execute();
             return true;
         }
+        else if (id == R.id.action_about){
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -99,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 // Construct the URL for the Internet service
-                URL url = new URL("http://wwwlab.iit.his.se/brom/kurser/mobilprog/dbservice/admin/getdataasjson.php?type=brom");
+                URL url = new URL("http://wwwlab.iit.his.se/b16johso/mobilprogrammering/glass.json");
 
                 // Create the request to the PHP-service, and open the connection
                 urlConnection = (HttpURLConnection) url.openConnection();
@@ -169,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
                     int id = mountain.getInt("ID");
                     String name = mountain.getString("name");
                     String location = mountain.getString("location");
-                    int height = mountain.getInt("size");
+                    int height = mountain.getInt("cost");
                     Log.d("I can't drive", name+" "+location+" "+height);
 
                     Mountain m = new Mountain(name, location, height);

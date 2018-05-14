@@ -16,7 +16,7 @@ public class Mountain {
     }
 
     public String infoText() {
-        return name+" - "+location+" - "+height+"m";
+        return name+" - "+location+" - "+height+"kr";
     }
 
     @Override
