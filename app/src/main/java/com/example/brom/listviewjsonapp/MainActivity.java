@@ -174,6 +174,8 @@ public class MainActivity extends AppCompatActivity {
                     String location = mountain.getString("location");
                     int height = mountain.getInt("cost");
                     Log.d("I can't drive", name+" "+location+" "+height);
+                    String imgurl = mountain.getString("auxdata");
+                    Log.d("URL: ", imgurl);
 
                     Mountain m = new Mountain(name, location, height);
                     adapter.add(m);
