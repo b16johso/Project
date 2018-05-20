@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="20dp">
+
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:padding="10dp">
+            <TextView
+                android:id="@+id/aboutTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="About This App"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorTextPrimary"/>
+
+            <TextView
+                android:id="@+id/aboutText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/aboutTitle"
+                android:textColor="@color/colorTextPrimary"
+                android:text="This app is for ice cream lovers of all ages and especially those who enjoy the taste of Kling Glass ice cream." />
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+</LinearLayout>

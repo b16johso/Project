@@ -1,5 +1,8 @@
 package com.example.brom.listviewjsonapp;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -39,9 +42,11 @@ import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
-    private String[] array = {"Hej"};
-    List<Mountain> mountainData = new ArrayList<Mountain>();
+    List<Mountain> iceCreamData = new ArrayList<Mountain>();
+    List iceCreamImages = new ArrayList();
     private ArrayAdapter adapter;
+    private ArrayAdapter adapterCost;
+    private ArrayAdapter adapterImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +55,8 @@ public class MainActivity extends AppCompatActivity {
         new FetchData().execute();
 
         setContentView(R.layout.activity_main);
-        adapter = new ArrayAdapter(getApplicationContext(),R.layout.list_item_textview,R.id.my_item_textview,mountainData);
+        adapter = new ArrayAdapter(getApplicationContext(),R.layout.list_item_textview,R.id.primary_item_textview,iceCreamData);
+
         ListView myListView = (ListView)findViewById(R.id.my_listview);
         myListView.setAdapter(adapter);
 
@@ -58,7 +64,9 @@ public class MainActivity extends AppCompatActivity {
 
             public void onItemClick(AdapterView<?> arg0, View v, int arg2, long arg3) {
                 //here v is your ListItem's layout.
-                Toast.makeText(getApplicationContext(), mountainData.get(arg2).infoText(), Toast.LENGTH_LONG).show();
+                startActivity(new Intent(MainActivity.this,IceCreamDetailsActivity.class));
+
+                //Toast.makeText(getApplicationContext(), iceCreamData.get(arg2).infoText(), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -72,16 +80,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         int id = item.getItemId();
-        if (id == R.id.action_settings){
-            return true;
-        }
-        else if (id == R.id.action_refresh){
+        if (id == R.id.action_refresh){
             Log.d("Anders", "Nu kör vi");
             adapter.clear();
             new FetchData().execute();
             return true;
         }
         else if (id == R.id.action_about){
+            Intent myIntent = new Intent(MainActivity.this, AboutActivity.class);
+            startActivity(myIntent);
             return true;
         }
 
@@ -159,8 +166,6 @@ public class MainActivity extends AppCompatActivity {
 
             // Implement a parsing code that loops through the entire JSON and creates objects
             // of our newly created Mountain class.
-            Log.d("Olle", "Hej");
-            Log.d("John", o);
 
             try {
                 JSONArray mountains = new JSONArray(o);
@@ -169,16 +174,16 @@ public class MainActivity extends AppCompatActivity {
 
                 for (int i = 0; i < mountains.length(); i++){
                     JSONObject mountain = mountains.getJSONObject(i);
+
                     int id = mountain.getInt("ID");
                     String name = mountain.getString("name");
                     String location = mountain.getString("location");
-                    int height = mountain.getInt("cost");
-                    Log.d("I can't drive", name+" "+location+" "+height);
+                    int cost = mountain.getInt("cost");
                     String imgurl = mountain.getString("auxdata");
-                    Log.d("URL: ", imgurl);
 
-                    Mountain m = new Mountain(name, location, height);
+                    Mountain m = new Mountain(name, location, cost, imgurl);
                     adapter.add(m);
+                    Log.d("LogArray", iceCreamImages.toString());
                 }
             }
 

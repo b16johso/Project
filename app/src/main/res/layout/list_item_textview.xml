@@ -1,30 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="fill_parent"
+    android:layout_height="72dp"
     android:layout_width="fill_parent"
-    android:padding="2dp">
+    android:paddingRight="16dp"
+    android:layout_marginTop="2dp"
+    android:layout_marginBottom="2dp">
 
     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/my_item_imageview"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:paddingLeft="10dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="16dp"
         android:paddingRight="10dp"
         />
 
+    <!-- Item Text -->
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:gravity="bottom"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="32dp"
         android:layout_toRightOf="@+id/my_item_imageview"
-        android:id="@+id/my_item_textview"
+        android:id="@+id/primary_item_textview"
+        android:textColor="@color/colorTextPrimary"
         android:textSize="16sp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
+        android:text="Test Item"
         />
+
+    <!-- Sub-item Text -->
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:gravity="bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_toRightOf="@+id/my_item_imageview"
+        android:layout_below="@id/primary_item_textview"
+        android:id="@+id/secondary_item_textview"
+        android:textSize="14sp"
+        android:text="666kr" />
 
     <ImageView android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/arrow"
         android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"/>
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="16dp"/>
 </RelativeLayout>

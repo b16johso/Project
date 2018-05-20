@@ -7,16 +7,22 @@ package com.example.brom.listviewjsonapp;
 public class Mountain {
     private String name;
     private String location;
-    private int height;
+    private int cost;
+    private String imgurl;
 
-    public Mountain(String _name, String _location, int _height){
+    public Mountain(String _name, String _location, int _cost, String _imgurl){
         name = _name;
         location = _location;
-        height = _height;
+        cost = _cost;
+        imgurl = _imgurl;
     }
 
     public String infoText() {
-        return name+" - "+location+" - "+height+"kr";
+        return location;
+    }
+
+    public String infoImage() {
+        return imgurl;
     }
 
     @Override
