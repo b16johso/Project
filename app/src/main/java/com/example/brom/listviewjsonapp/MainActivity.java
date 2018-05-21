@@ -42,11 +42,11 @@ import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
-    List<Mountain> iceCreamData = new ArrayList<Mountain>();
-    List iceCreamImages = new ArrayList();
+    ArrayList<IceCream> iceCreamList = new ArrayList<>();
+    List<String> iceCreamCost = new ArrayList<String>();
+    List<String> iceCreamDescription = new ArrayList<String>();
     private ArrayAdapter adapter;
-    private ArrayAdapter adapterCost;
-    private ArrayAdapter adapterImage;
+    private ArrayAdapter adapter2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +55,8 @@ public class MainActivity extends AppCompatActivity {
         new FetchData().execute();
 
         setContentView(R.layout.activity_main);
-        adapter = new ArrayAdapter(getApplicationContext(),R.layout.list_item_textview,R.id.primary_item_textview,iceCreamData);
+        adapter = new IceCreamAdapter(getApplicationContext(),iceCreamList);
+        //adapter2 = new ArrayAdapter(getApplicationContext(),R.layout.list_item_textview,R.id.secondary_item_textview,iceCreamCost);
 
         ListView myListView = (ListView)findViewById(R.id.my_listview);
         myListView.setAdapter(adapter);
@@ -64,7 +65,8 @@ public class MainActivity extends AppCompatActivity {
 
             public void onItemClick(AdapterView<?> arg0, View v, int arg2, long arg3) {
                 //here v is your ListItem's layout.
-                startActivity(new Intent(MainActivity.this,IceCreamDetailsActivity.class));
+                Intent myIntent = new Intent(MainActivity.this, IceCreamDetailsActivity.class);
+                startActivity(myIntent);
 
                 //Toast.makeText(getApplicationContext(), iceCreamData.get(arg2).infoText(), Toast.LENGTH_LONG).show();
             }
@@ -81,8 +83,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         int id = item.getItemId();
         if (id == R.id.action_refresh){
-            Log.d("Anders", "Nu kör vi");
-            adapter.clear();
+            iceCreamList.clear();
             new FetchData().execute();
             return true;
         }
@@ -177,21 +178,20 @@ public class MainActivity extends AppCompatActivity {
 
                     int id = mountain.getInt("ID");
                     String name = mountain.getString("name");
+                    Log.d("Name: ", name);
                     String location = mountain.getString("location");
                     int cost = mountain.getInt("cost");
                     String imgurl = mountain.getString("auxdata");
 
-                    Mountain m = new Mountain(name, location, cost, imgurl);
-                    adapter.add(m);
-                    Log.d("LogArray", iceCreamImages.toString());
+                    iceCreamList.add(new IceCream(name, cost));
+
+                    Log.d("icarray", adapter.toString());
                 }
             }
 
             catch (JSONException e){
                 e.printStackTrace();
             }
-
-
         }
     }
 }

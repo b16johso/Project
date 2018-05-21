@@ -25,8 +25,9 @@ public class Mountain {
         return imgurl;
     }
 
-    @Override
-    public String toString() {
+    public String infoCost() { return Integer.toString(cost)+"kr";}
+
+    public String infoName() {
         return name;
     }
 }
