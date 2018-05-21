@@ -30,6 +30,8 @@ public class IceCream {
 
     private int image2 = R.drawable.icecream_pinne;
 
+    private int imageTemp = R.drawable.icecream_temp;
+
     private String strut = "Strut";
 
     private String pinne = "Pinne";
@@ -50,6 +52,10 @@ public class IceCream {
 
         else if (category.equals(pinne)){
             this.image = image2;
+        }
+
+        else {
+            this.image = imageTemp;
         }
 
         return image;

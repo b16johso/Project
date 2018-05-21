@@ -5,4 +5,8 @@
     <string name="action_about">About</string>
     <string name="icon_description">Ice cream icon.</string>
     <string name="arrow_description">Arrow</string>
+    <string name="about_title">Om Appen</string>
+    <string name="about_text1">Denna app är till för glassentusiaster i alla åldrar och speciellet för de som gillar glass från Kling Glass.</string>
+    <string name="about_text2">Med hjälp av denna appen kan du lätt bläddra genom Kling Glass glasssortiment.</string>
+    <string name="about_text3">Skapad av John Söderberg.</string>
 </resources>

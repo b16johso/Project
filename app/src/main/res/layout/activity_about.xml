@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/aboutImage"
-                android:text="Om Appen"
+                android:text="@string/about_title"
                 android:textColor="@color/colorTextPrimary"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -40,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/aboutTitle"
-                android:text="Denna appen "
+                android:text="@string/about_text1"
                 android:textColor="@color/colorTextPrimary" />
 
             <TextView
@@ -48,7 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/aboutText"
-                android:text="With this app, you can browse"
+                android:text="@string/about_text2"
                 android:textColor="@color/colorTextPrimary" />
 
             <TextView
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/aboutText2"
                 android:layout_marginTop="20dp"
-                android:text="Created by John Söderberg"
+                android:text="@string/about_text3"
                 android:textColor="@color/colorTextSecondary" />
         </RelativeLayout>
 
