@@ -5,14 +5,11 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center_vertical"
-    android:background="@color/colorBackground">
+    android:layout_gravity="center_vertical">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
         app:cardBackgroundColor="@color/colorWhite">
 
         <RelativeLayout
@@ -25,7 +22,8 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_centerHorizontal="true"
-                android:src="@drawable/icecream_vector" />
+                android:src="@drawable/icecream_vector"
+                android:contentDescription="@string/icon_description"/>
 
             <TextView
                 android:id="@+id/aboutTitle"

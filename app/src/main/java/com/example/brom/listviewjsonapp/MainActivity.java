@@ -41,8 +41,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     ArrayList<IceCream> iceCreamList = new ArrayList<>();
-    List<String> iceCreamCost = new ArrayList<String>();
-    List<String> iceCreamDescription = new ArrayList<String>();
     private ArrayAdapter adapter;
 
     @Override
@@ -61,12 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
             public void onItemClick(AdapterView<?> arg0, View v, int arg2, long arg3) {
                 //here v is your ListItem's layout.
-                Intent myIntent = new Intent(MainActivity.this, IceCreamDetailsActivity.class);
-                Bundle extras = new Bundle();
-                extras.putString("DESCRIPTION",iceCreamList.get(arg2).getDescription());
-                extras.putString("IMGURL",iceCreamList.get(arg2).getImgurl());
-                myIntent.putExtras(extras);
-                startActivity(myIntent);
+                Toast.makeText(getApplicationContext(), iceCreamList.get(arg2).getDescription(), Toast.LENGTH_LONG).show();
 
             }
         });
