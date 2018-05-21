@@ -1,38 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center_vertical">
+    android:layout_gravity="center_vertical"
+    android:background="@color/colorBackground">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_margin="20dp">
+        app:cardBackgroundColor="@color/colorWhite">
 
         <RelativeLayout
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_width="match_parent"
             android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/aboutImage"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/icecream_vector" />
+
             <TextView
                 android:id="@+id/aboutTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="About This App"
+                android:layout_below="@id/aboutImage"
+                android:text="Om Appen"
+                android:textColor="@color/colorTextPrimary"
                 android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="@color/colorTextPrimary"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/aboutText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/aboutTitle"
-                android:textColor="@color/colorTextPrimary"
-                android:text="This app is for ice cream lovers of all ages and especially those who enjoy the taste of Kling Glass ice cream." />
+                android:text="Denna appen "
+                android:textColor="@color/colorTextPrimary" />
+
+            <TextView
+                android:id="@+id/aboutText2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/aboutText"
+                android:text="With this app, you can browse"
+                android:textColor="@color/colorTextPrimary" />
+
+            <TextView
+                android:id="@+id/aboutText3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/aboutText2"
+                android:layout_marginTop="20dp"
+                android:text="Created by John Söderberg"
+                android:textColor="@color/colorTextSecondary" />
         </RelativeLayout>
 
     </android.support.v7.widget.CardView>

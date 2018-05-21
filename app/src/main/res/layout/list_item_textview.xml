@@ -4,7 +4,8 @@
     android:layout_width="fill_parent"
     android:paddingRight="16dp"
     android:layout_marginTop="2dp"
-    android:layout_marginBottom="2dp">
+    android:layout_marginBottom="2dp"
+    android:background="@color/colorWhite">
 
     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/my_item_imageview"
@@ -12,6 +13,7 @@
         android:layout_height="40dp"
         android:layout_margin="16dp"
         android:paddingRight="10dp"
+        android:src="@mipmap/icecream_test_img"
         />
 
     <!-- Item Text -->

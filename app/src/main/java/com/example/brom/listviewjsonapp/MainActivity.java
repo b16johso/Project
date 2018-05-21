@@ -30,8 +30,6 @@ import java.util.Arrays;
 import java.util.List;
 
 
-// Create a new class, Mountain, that can hold your JSON data
-
 // Create a ListView as in "Assignment 1 - Toast and ListView"
 
 // Retrieve data from Internet service using AsyncTask and the included networking code
@@ -46,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
     List<String> iceCreamCost = new ArrayList<String>();
     List<String> iceCreamDescription = new ArrayList<String>();
     private ArrayAdapter adapter;
-    private ArrayAdapter adapter2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
         adapter = new IceCreamAdapter(getApplicationContext(),iceCreamList);
-        //adapter2 = new ArrayAdapter(getApplicationContext(),R.layout.list_item_textview,R.id.secondary_item_textview,iceCreamCost);
 
         ListView myListView = (ListView)findViewById(R.id.my_listview);
         myListView.setAdapter(adapter);
@@ -66,9 +62,12 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> arg0, View v, int arg2, long arg3) {
                 //here v is your ListItem's layout.
                 Intent myIntent = new Intent(MainActivity.this, IceCreamDetailsActivity.class);
+                Bundle extras = new Bundle();
+                extras.putString("DESCRIPTION",iceCreamList.get(arg2).getDescription());
+                extras.putString("IMGURL",iceCreamList.get(arg2).getImgurl());
+                myIntent.putExtras(extras);
                 startActivity(myIntent);
 
-                //Toast.makeText(getApplicationContext(), iceCreamData.get(arg2).infoText(), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -83,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         int id = item.getItemId();
         if (id == R.id.action_refresh){
-            iceCreamList.clear();
+            adapter.clear();
             new FetchData().execute();
             return true;
         }
@@ -166,7 +165,6 @@ public class MainActivity extends AppCompatActivity {
             // the un-parsed JSON string or is null if we had an IOException during the fetch.
 
             // Implement a parsing code that loops through the entire JSON and creates objects
-            // of our newly created Mountain class.
 
             try {
                 JSONArray mountains = new JSONArray(o);
@@ -179,11 +177,12 @@ public class MainActivity extends AppCompatActivity {
                     int id = mountain.getInt("ID");
                     String name = mountain.getString("name");
                     Log.d("Name: ", name);
-                    String location = mountain.getString("location");
+                    String description = mountain.getString("location");
                     int cost = mountain.getInt("cost");
                     String imgurl = mountain.getString("auxdata");
+                    String category = mountain.getString("category");
 
-                    iceCreamList.add(new IceCream(name, cost));
+                    adapter.add(new IceCream(name, cost, imgurl, category, description));
 
                     Log.d("icarray", adapter.toString());
                 }
